@@ -1,6 +1,10 @@
 @import "../../variables";
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   flex: 1 1 25%;
   outline: 1px solid $dark-gray;
   padding-top: 20px;

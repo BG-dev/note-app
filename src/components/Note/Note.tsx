@@ -1,12 +1,12 @@
 import React from "react";
-import "./Note.scss"
+import "./Note.scss";
 
-export default function Note(){
+const Note: React.FC = () => {
+  return (
+    <div className="note">
+      <h1>dsds</h1>
+    </div>
+  );
+};
 
-    return(
-        <div className="note">
-            <h1>dsds</h1>
-            Bu
-        </div>
-    )
-}
+export default Note;

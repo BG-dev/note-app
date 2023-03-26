@@ -1,30 +1,43 @@
-import React, { useState,useEffect } from "react";
-import notesData from "../../assets/notes.json"
+import React, { useState, useEffect } from "react";
 import INote from "../../types/note";
-import "./Sidebar.scss"
+import uuid from "react-uuid";
+import "./Sidebar.scss";
 
-import NoteCard from "../NoteCard";
+import { NoteCard, Button } from "../";
+import { readDataFromStorage, writeDataToStorage } from "../../utils/utils";
 
 const Sidebar: React.FC = () => {
+  const [notes, setNotes] = useState<INote[]>([]);
 
-    const [notes, setNotes] = useState<INote[]>([])
+  useEffect(() => {
+    const getNotes = () => {
+      const notesData = readDataFromStorage();
+      if (notesData != null) setNotes(notesData);
+    };
+    getNotes();
+  }, []);
 
-    useEffect(() => {
-        const getNotes = () => {
-            setNotes(notesData);
-        }
-        getNotes()
-    }, [])
+  const handleAddNote = () => {
+    const newNote: INote = {
+      id: uuid().toString(),
+      title: "Untitled",
+      content: "",
+      date: Date.now().toString(),
+      tags: [],
+    };
+    const newNotesList = [...notes, newNote];
+    writeDataToStorage(newNotesList);
+    setNotes(newNotesList);
+  };
 
-    return(
-        <div className="sidebar">
-                <ul className="sidebar__list">
-                    {
-                        notes && notes.map(note => (<NoteCard key={note.id} {...note} />))
-                    }
-                </ul>
-        </div>
-    )
-}
+  return (
+    <div className="sidebar">
+      <ul className="sidebar__list">
+        {notes && notes.map((note) => <NoteCard key={note.id} {...note} />)}
+      </ul>
+      <Button text={"Add note"} color={"blue"} handleClick={handleAddNote} />
+    </div>
+  );
+};
 
-export default Sidebar
+export default Sidebar;
