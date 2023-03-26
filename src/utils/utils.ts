@@ -1,15 +1,11 @@
-import INote from "../types/note";
-
-const STORAGE_KEY = "notes";
-
-export function writeDataToStorage(data: INote[]): void {
+export function writeDataToStorage<Data>(data: Data[], key: string): void {
   const jsonData: string = JSON.stringify(data);
-  localStorage.setItem(STORAGE_KEY, jsonData);
+  localStorage.setItem(key, jsonData);
 }
 
-export function readDataFromStorage(): INote[] | null {
-  const jsonData: string | null = localStorage.getItem(STORAGE_KEY);
-  let data: INote[] | null = null;
+export function readDataFromStorage<Data>(key: string): Data[] {
+  const jsonData: string | null = localStorage.getItem(key);
+  let data: Data[] = [];
   if (jsonData != null) {
     data = JSON.parse(jsonData);
   }

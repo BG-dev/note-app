@@ -4,17 +4,16 @@ import uuid from "react-uuid";
 import "./Sidebar.scss";
 
 import { NoteCard, Button } from "../";
-import { readDataFromStorage, writeDataToStorage } from "../../utils/utils";
 
 const Sidebar: React.FC = () => {
   const [notes, setNotes] = useState<INote[]>([]);
 
   useEffect(() => {
-    const getNotes = () => {
-      const notesData = readDataFromStorage();
-      if (notesData != null) setNotes(notesData);
-    };
-    getNotes();
+    // const getNotes = () => {
+    //   const notesData = readDataFromStorage<INote>();
+    //   if (notesData != null) setNotes(notesData);
+    // };
+    // getNotes();
   }, []);
 
   const handleAddNote = () => {
@@ -26,7 +25,6 @@ const Sidebar: React.FC = () => {
       tags: [],
     };
     const newNotesList = [...notes, newNote];
-    writeDataToStorage(newNotesList);
     setNotes(newNotesList);
   };
 
