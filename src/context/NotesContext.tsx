@@ -16,6 +16,13 @@ interface IProviderProps {
   children: React.ReactNode;
 }
 
+const updateNotesAction = (notes: INote[]): IAction => {
+  return {
+    type: "UPDATE_NOTES",
+    payload: notes,
+  };
+};
+
 const STORAGE_KEY: string = "notes";
 
 const INITIAL_STATE: IState = {
@@ -54,4 +61,4 @@ const NotesContextProvider: React.FC<IProviderProps> = ({ children }) => {
   );
 };
 
-export { NotesContextProvider, NotesContext };
+export { NotesContextProvider, NotesContext, updateNotesAction };

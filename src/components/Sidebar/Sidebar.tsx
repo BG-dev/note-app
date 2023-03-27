@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import INote from "../../types/note";
 import uuid from "react-uuid";
 import "./Sidebar.scss";
 
 import { NoteCard, Button } from "../";
+import { NotesContext, updateNotesAction } from "../../context/NotesContext";
 
 const Sidebar: React.FC = () => {
-  const [notes, setNotes] = useState<INote[]>([]);
-
-  useEffect(() => {
-    // const getNotes = () => {
-    //   const notesData = readDataFromStorage<INote>();
-    //   if (notesData != null) setNotes(notesData);
-    // };
-    // getNotes();
-  }, []);
+  const { notes, dispatch } = useContext(NotesContext);
 
   const handleAddNote = () => {
     const newNote: INote = {
@@ -24,8 +17,8 @@ const Sidebar: React.FC = () => {
       date: Date.now().toString(),
       tags: [],
     };
-    const newNotesList = [...notes, newNote];
-    setNotes(newNotesList);
+    const newNotesList: INote[] = [...notes, newNote];
+    dispatch?.(updateNotesAction(newNotesList));
   };
 
   return (
