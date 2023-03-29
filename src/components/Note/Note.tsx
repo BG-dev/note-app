@@ -80,6 +80,7 @@ const Note: React.FC = () => {
             onBlur={handleSaveNoteContent}
             spellCheck={true}
           />
+          
         </div>
       </div>
     </div>
