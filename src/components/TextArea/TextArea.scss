@@ -1,0 +1,9 @@
+.text-area {
+  font-size: 1.6rem;
+  padding: 10px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
