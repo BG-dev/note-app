@@ -26,7 +26,7 @@ const updateNotesAction = (notes: INote[]): IAction => {
 const STORAGE_KEY: string = "notes";
 
 const INITIAL_STATE: IState = {
-  notes: readDataFromStorage<INote>(STORAGE_KEY),
+  notes: readDataFromStorage<INote>(STORAGE_KEY) || [],
 };
 
 const NotesContext = createContext<IState>(INITIAL_STATE);

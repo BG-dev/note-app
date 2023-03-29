@@ -9,7 +9,7 @@ import { NotesContext, updateNotesAction } from "../../context/NotesContext";
 const Sidebar: React.FC = () => {
   const { notes, dispatch } = useContext(NotesContext);
 
-  const handleAddNote = () => {
+  const handleAddNote = (): void => {
     const newNote: INote = {
       id: uuid().toString(),
       title: "Untitled",
@@ -26,7 +26,9 @@ const Sidebar: React.FC = () => {
       <ul className="sidebar__list">
         {notes && notes.map((note) => <NoteCard key={note.id} {...note} />)}
       </ul>
-      <Button text={"Add note"} color={"blue"} handleClick={handleAddNote} />
+      <Button color={"blue"} handleClick={handleAddNote}>
+        Add note
+      </Button>
     </div>
   );
 };

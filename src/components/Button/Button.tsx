@@ -1,15 +1,15 @@
 import "./Button.scss";
 
 interface IButton {
-  text: string;
+  children: string;
   color: "red" | "blue";
   handleClick: () => void;
 }
 
-const Button: React.FC<IButton> = ({ text, color, handleClick }) => {
+const Button: React.FC<IButton> = ({ children, color, handleClick }) => {
   return (
     <button className={`btn btn-${color}`} onClick={handleClick}>
-      {text}
+      {children}
     </button>
   );
 };
