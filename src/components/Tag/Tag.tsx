@@ -1,16 +1,12 @@
 import React from "react";
+import ITag from "../../types/tag";
 import "./Tag.scss";
 
-interface ITagProps {
-  text: string;
-  color: string;
-}
-
-const Tag: React.FC<ITagProps> = ({ text, color }) => {
+const Tag: React.FC<ITag> = ({ text, color }) => {
   return (
-    <div className="tag" style={{ backgroundColor: color }}>
+    <li className={`tag tag-${color}`}>
       <span className="tag__text">{text}</span>
-    </div>
+    </li>
   );
 };
 

@@ -4,7 +4,8 @@ import uuid from "react-uuid";
 import "./Sidebar.scss";
 
 import { NoteCard, Button } from "../";
-import { NotesContext, updateNotesAction } from "../../context/NotesContext";
+import { NotesContext } from "../../context/NotesContext";
+import { addNoteAction } from "../../context/NotesActions";
 
 const Sidebar: React.FC = () => {
   const { notes, dispatch } = useContext(NotesContext);
@@ -17,8 +18,7 @@ const Sidebar: React.FC = () => {
       date: Date.now().toString(),
       tags: [],
     };
-    const newNotesList: INote[] = [...notes, newNote];
-    dispatch?.(updateNotesAction(newNotesList));
+    dispatch?.(addNoteAction(newNote));
   };
 
   return (

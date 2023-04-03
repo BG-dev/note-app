@@ -1,8 +1,13 @@
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import INote from "../../types/note";
-import { NotesContext, updateNotesAction } from "../../context/NotesContext";
-import { Button, Input, TextArea } from "../../components";
+import { NotesContext } from "../../context/NotesContext";
+import {
+  updateNoteTitleAction,
+  updateNoteContentAction,
+  deleteNoteAction,
+} from "../../context/NotesActions";
+import { Button, Input, TextArea, TagsList } from "../../components";
 import "./Note.scss";
 
 const Note: React.FC = () => {
@@ -24,10 +29,7 @@ const Note: React.FC = () => {
 
   const handleDeleteNote = (): void => {
     if (note === null) return;
-    let newNotesList: INote[] = [...notes];
-    const noteIndex: number = notes.indexOf(note);
-    newNotesList.splice(noteIndex, 1);
-    dispatch?.(updateNotesAction(newNotesList));
+    dispatch?.(deleteNoteAction(note));
   };
 
   const handleChangeNoteTitle = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -42,19 +44,12 @@ const Note: React.FC = () => {
 
   const handleSaveNoteTitle = (): void => {
     if (note === null) return;
-    let newNotesList: INote[] = [...notes];
-    const noteIndex: number = notes.indexOf(note);
-    newNotesList[noteIndex] = { ...note, title };
-    dispatch?.(updateNotesAction(newNotesList));
+    dispatch?.(updateNoteTitleAction(note, title));
   };
 
   const handleSaveNoteContent = (): void => {
     if (note === null) return;
-    let newNotesList: INote[] = [...notes];
-    const noteIndex: number = notes.indexOf(note);
-    newNotesList[noteIndex] = { ...note, content };
-    console.log(newNotesList);
-    dispatch?.(updateNotesAction(newNotesList));
+    dispatch?.(updateNoteContentAction(note, content));
   };
 
   return (
@@ -80,7 +75,7 @@ const Note: React.FC = () => {
             onBlur={handleSaveNoteContent}
             spellCheck={true}
           />
-          
+          {note && <TagsList note={note} />}
         </div>
       </div>
     </div>
