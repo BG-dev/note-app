@@ -7,7 +7,7 @@ const Tag: React.FC<ITag> = ({ text, color }) => {
 
   return (
     <li className={`tag`} style={{ backgroundColor: bgColor }}>
-      <span className="tag__text">{text}</span>
+      <span className="tag__text">{`#${text}`}</span>
     </li>
   );
 };

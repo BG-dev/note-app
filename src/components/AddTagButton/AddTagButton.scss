@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.add-tag {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 50px;
+  border-radius: 50px;
+  color: $black;
+  font-weight: bold;
+
+  &__input {
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 150px;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+  }
+}

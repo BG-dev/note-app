@@ -7,7 +7,7 @@ import {
   updateNoteContentAction,
   deleteNoteAction,
 } from "../../context/NotesActions";
-import { Button, Input, TextArea, TagsList } from "../../components";
+import { Button, TextArea, TagsList } from "../../components";
 import "./Note.scss";
 
 const Note: React.FC = () => {
@@ -56,8 +56,9 @@ const Note: React.FC = () => {
     <div className="note">
       <div className="note__container">
         <div className="note__header">
-          <Input
+          <input
             type={"text"}
+            className="note__header-title input"
             value={title}
             onChange={handleChangeNoteTitle}
             onBlur={handleSaveNoteTitle}
