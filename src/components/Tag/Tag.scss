@@ -1,26 +1,8 @@
 @import "../../variables";
 
 .tag {
-  padding: 10px;
+  padding: 12px;
   border-radius: 50px;
-
-  &-red {
-    background-color: #c1121f;
-    color: $white;
-  }
-
-  &-green {
-    background-color: #2a9d8f;
-    color: $white;
-  }
-
-  &-blue {
-    background-color: #8ecae6;
-    color: $white;
-  }
-
-  &-purple {
-    background-color: #cdb4db;
-    color: $white;
-  }
+  color: $black;
+  font-weight: bold;
 }
