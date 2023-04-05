@@ -59,7 +59,9 @@ const AddTagButton: React.FC<IAddTagButton> = ({ note }) => {
     if (text === "") return;
 
     const tag: ITag = { text, color: tagColor };
-    dispatch?.(addNoteTagAction(note, tag));
+    if (text.length > MIN_TEXT_LENGTH && text.length <= MAX_TEXT_LENGTH) {
+      dispatch?.(addNoteTagAction(note, tag));
+    }
   };
 
   const handleClickButton = (): void => {
@@ -83,9 +85,7 @@ const AddTagButton: React.FC<IAddTagButton> = ({ note }) => {
     if (e.key !== "Enter") return;
     const text = e.currentTarget.value;
     stopEditing();
-    if (text.length > MIN_TEXT_LENGTH && text.length <= MAX_TEXT_LENGTH) {
-      addTag(text);
-    }
+    addTag(text);
   };
 
   return (

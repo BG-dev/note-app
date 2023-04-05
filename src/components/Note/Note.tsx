@@ -1,4 +1,11 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  FocusEvent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useParams } from "react-router-dom";
 import INote from "../../types/note";
 import { NotesContext } from "../../context/NotesContext";
@@ -9,6 +16,9 @@ import {
 } from "../../context/NotesActions";
 import { Button, TextArea, TagsList } from "../../components";
 import "./Note.scss";
+
+const MIN_TITLE_LENGTH = 0;
+const MAX_TITLE_LENGTH = 15;
 
 const Note: React.FC = () => {
   const { id } = useParams();
@@ -42,14 +52,37 @@ const Note: React.FC = () => {
     setContent(e.target.value);
   };
 
-  const handleSaveNoteTitle = (): void => {
+  const setNoteTitle = (titleText: string): void => {
     if (note === null) return;
-    dispatch?.(updateNoteTitleAction(note, title));
+    if (
+      titleText.length > MIN_TITLE_LENGTH &&
+      titleText.length <= MAX_TITLE_LENGTH
+    ) {
+      dispatch?.(updateNoteTitleAction(note, titleText));
+    }
   };
 
   const handleSaveNoteContent = (): void => {
     if (note === null) return;
     dispatch?.(updateNoteContentAction(note, content));
+  };
+
+  const handleOnBlurInput = (
+    e: FocusEvent<HTMLInputElement>,
+    handler: (text: string) => void
+  ): void => {
+    const text = e.currentTarget.value;
+    handler(text);
+  };
+
+  const handleOnPressEnter = (
+    e: KeyboardEvent<HTMLInputElement>,
+    handler: (text: string) => void
+  ): void => {
+    if (e.key !== "Enter") return;
+    const text = e.currentTarget.value;
+    handler(text);
+    e.currentTarget.blur();
   };
 
   return (
@@ -61,7 +94,8 @@ const Note: React.FC = () => {
             className="note__header-title input"
             value={title}
             onChange={handleChangeNoteTitle}
-            onBlur={handleSaveNoteTitle}
+            onBlur={(e) => handleOnBlurInput(e, setNoteTitle)}
+            onKeyDown={(e) => handleOnPressEnter(e, setNoteTitle)}
             placeholder={note?.title || "Untitled"}
             spellCheck={false}
           />

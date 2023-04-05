@@ -3,10 +3,14 @@
 .note-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  padding: 20px 20px 20px 30px;
   border-bottom: 1px solid $dark-gray;
+  background-color: $gray;
   color: $black;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-decoration: none;
+}
+
+.selected {
+  background-color: $white;
 }

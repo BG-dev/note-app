@@ -3,9 +3,25 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
   flex: 1 1 25%;
-  outline: 1px solid $dark-gray;
   padding-top: 20px;
+  outline: 1px solid $dark-gray;
+  background-color: $gray;
+
+  &__header {
+    font-size: 1.7rem;
+    padding: 30px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex: 1;
+  }
+
+  &__list {
+    border-top: 1px solid $dark-gray;
+  }
 }
