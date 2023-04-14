@@ -8,8 +8,8 @@ interface INoteCardProps extends INote {
 
 const NoteCard: React.FC<INoteCardProps> = ({ title, id, selected }) => {
   return (
-    <Link to={`/${id}`}>
-      <li className={`note-card ${selected ? "selected" : ""}`}>
+    <Link className={`note-card ${selected ? "selected" : ""}`} to={`/${id}`}>
+      <li>
         <h3 className="note-card__title">{title}</h3>
       </li>
     </Link>

@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
             ))}
         </ul>
         <Button color={"blue"} handleClick={handleAddNote}>
-          Add note
+          Add Note
         </Button>
       </div>
     </aside>

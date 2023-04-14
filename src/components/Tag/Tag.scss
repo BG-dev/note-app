@@ -8,6 +8,7 @@
   border-radius: 50px;
   color: $black;
   font-weight: bold;
+  pointer-events: none;
 
   &__text {
     font-size: 1.2rem;

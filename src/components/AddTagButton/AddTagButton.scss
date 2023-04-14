@@ -8,6 +8,8 @@
   border-radius: 50px;
   color: $black;
   font-weight: bold;
+  pointer-events: none;
+  user-select: none;
 
   &__input {
     font-size: 1.2rem;
