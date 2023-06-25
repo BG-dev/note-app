@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar__header">
-        <h2>All Notes</h2>
+        <h2>Notes</h2>
       </div>
       <div className="sidebar__content">
         <ul className="sidebar__list">
