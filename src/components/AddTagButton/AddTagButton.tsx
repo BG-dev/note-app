@@ -34,7 +34,6 @@ const AddTagButton: React.FC<IAddTagButton> = ({ note }) => {
 
   useEffect(() => {
     setNewTagColor();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note.tags]);
 
   const getRandomColor = (): string => {

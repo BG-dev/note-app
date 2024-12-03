@@ -9,8 +9,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`/${notes[0].id}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    navigate(`/${notes[0]?.id}`);
   }, []);
 
   return (
